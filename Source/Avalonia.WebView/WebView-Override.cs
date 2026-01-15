@@ -1,4 +1,4 @@
-﻿using Avalonia.Controls;
+using Avalonia.Controls;
 using Avalonia.LogicalTree;
 
 namespace AvaloniaWebView;
@@ -72,6 +72,10 @@ partial class WebView
     protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
     {
         base.OnDetachedFromLogicalTree(e);
+
+        bool disposeOnDetached = DisposeOnDetachedFromLogicTree is null ? true : DisposeOnDetachedFromLogicTree.Value;
+        if (!disposeOnDetached)
+            return;
 
         if (_attachControl is IDisposable disposable)
             disposable.Dispose();

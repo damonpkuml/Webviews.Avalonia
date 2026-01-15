@@ -1,4 +1,4 @@
-﻿namespace AvaloniaWebView;
+namespace AvaloniaWebView;
 
 partial class WebView
 {
@@ -41,6 +41,8 @@ partial class WebView
     public static readonly StyledProperty<bool?> KeepAliveProperty =
            AvaloniaProperty.Register<WebView, bool?>(nameof(KeepAlive), defaultValue:default);
 
+    public static readonly StyledProperty<bool?> DisposeOnDetachedFromLogicTreeProperty=
+              AvaloniaProperty.Register<WebView, bool?>(nameof(DisposeOnDetachedFromLogicTree), defaultValue: true);
 
     [Content]
     private Control? Child
@@ -111,6 +113,12 @@ partial class WebView
         set => SetValue(KeepAliveProperty, value);  
     }
 
+
+    public bool? DisposeOnDetachedFromLogicTree
+    {
+        get => GetValue(DisposeOnDetachedFromLogicTreeProperty);
+        set => SetValue(DisposeOnDetachedFromLogicTreeProperty, value);
+    }
 
     public object? EmptyViewer
     {
